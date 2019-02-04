@@ -8,6 +8,6 @@
 To run the program:
 - python3 stocks.py
 - In browser: (example)
-  * localhost:8880/price?stock=STOCK_ABBREVIATION
+  * localhost:8880/price?stock=STOCK_ABBREVIATION , will return the price of given stock eg. TSLA
   
   
