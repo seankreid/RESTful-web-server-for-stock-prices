@@ -31,8 +31,7 @@ class MyHTTPServer(BaseHTTPRequestHandler):
      
 		parsed = urlparse.urlparse(self.path)
 		parameters = urlparse.parse_qs(parsed.query)
-		#stock = parameters['stock'][0].lower()
-		#name = parameters['name'][0].lower()
+		
    
 		if(parsed.path == '/price'): 
 			stock = parameters['stock'][0].lower()
