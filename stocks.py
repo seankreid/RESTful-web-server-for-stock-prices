@@ -63,7 +63,7 @@ class MyHTTPServer(BaseHTTPRequestHandler):
 			try:
 				c.execute("INSERT INTO Stocks (name, abreviation) VALUES(" + name + ", '" + abreviation + "')");
 				conn.commit()
-				self.wfile.write("Stock was successfully added.".encode('utf-8'))
+				self.wfile.write("Stock was added successfully.".encode('utf-8'))
 			except:
 				self.wfile.write("That stock already exists.")
 
