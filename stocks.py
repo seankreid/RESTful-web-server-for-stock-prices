@@ -46,6 +46,7 @@ class MyHTTPServer(BaseHTTPRequestHandler):
 							 'text/plain; charset=utf-8')
 			self.end_headers()
 			self.wfile.write(price.encode('utf-8'))
+			
 		# get stock name from databse
 		elif(parsed.path == '/name'):
 			conn = sqlite3.connect('stocks.db')
@@ -56,6 +57,7 @@ class MyHTTPServer(BaseHTTPRequestHandler):
 				self.wfile.write(abrv.encode('utf-8'))
 			except:
 				self.wfile.write("Error! That stock does not exist!.".encode('utf-8'))
+				
 		# add stock to database
 		elif(parsed.path == '/addName'):
 			name = parameters['name'][0].lower()
