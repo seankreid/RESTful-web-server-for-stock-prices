@@ -11,7 +11,8 @@ import sqlite3
 
 conn = sqlite3.connect('stocks.db')
 c = conn.cursor()
-c.execute(               				 #create a table if one does not exist
+#create a table if one does not exist
+c.execute(               				
 	'''CREATE TABLE IF NOT EXISTS STOCKS
 		( NAME TEXT PRIMARY KEY, \
 		  ABREVIATION TEXT \
@@ -32,7 +33,7 @@ class MyHTTPServer(BaseHTTPRequestHandler):
 		parsed = urlparse.urlparse(self.path)
 		parameters = urlparse.parse_qs(parsed.query)
 		
-   
+   		# get stock price
 		if(parsed.path == '/price'): 
 			stock = parameters['stock'][0].lower()
 			page = requests.get("https://www.marketwatch.com/investing/stock/" + stock)
@@ -45,7 +46,7 @@ class MyHTTPServer(BaseHTTPRequestHandler):
 							 'text/plain; charset=utf-8')
 			self.end_headers()
 			self.wfile.write(price.encode('utf-8'))
-
+		# get stock name from databse
 		elif(parsed.path == '/name'):
 			conn = sqlite3.connect('stocks.db')
 			c = conn.cursor()
@@ -55,7 +56,7 @@ class MyHTTPServer(BaseHTTPRequestHandler):
 				self.wfile.write(abrv.encode('utf-8'))
 			except:
 				self.wfile.write("Error! That stock does not exist!.".encode('utf-8'))
-
+		# add stock to database
 		elif(parsed.path == '/addName'):
 			name = parameters['name'][0].lower()
 			conn = sqlite3.connect('stocks.db')
